@@ -72,7 +72,7 @@ def make_text(chains):
     if len(text) >= 140:
         text = text[:140]
 
-        return text
+    return text
 
 # Replace with name of your file
 all_text = open_and_read_file("green-eggs.txt")
