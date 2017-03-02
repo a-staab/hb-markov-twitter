@@ -1,7 +1,9 @@
+import sys
 import os
 import twitter
 from random import choice
 
+chains = sys.argv[1]
 api = twitter.Api(consumer_key=os.environ['TWITTER_CONSUMER_KEY'],
                   consumer_secret=os.environ['TWITTER_CONSUMER_SECRET'],
                   access_token_key=os.environ['TWITTER_ACCESS_TOKEN_KEY'],
@@ -74,8 +76,13 @@ def make_text(chains):
 
     return text
 
-# Replace with name of your file
-all_text = open_and_read_file("green-eggs.txt")
+# Commented text below is incomplete - placeholder for function allowing user to
+# continue tweeting or exit program
+# def tweet(chains):
+#     while tweeting:
+#     raw_input("Enter to tweet again [q to quit] > ")
+
+all_text = open_and_read_file(chains)
 markov_chains = make_chains(all_text)
 twitter_post = make_text(markov_chains)
 
