@@ -1,4 +1,11 @@
+import os
+import twitter
 from random import choice
+
+api = twitter.Api(consumer_key=os.environ['TWITTER_CONSUMER_KEY'],
+                  consumer_secret=os.environ['TWITTER_CONSUMER_SECRET'],
+                  access_token_key=os.environ['TWITTER_ACCESS_TOKEN_KEY'],
+                  access_token_secret=os.environ['TWITTER_ACCESS_TOKEN_SECRET'])
 
 
 def open_and_read_file(file_path):
@@ -62,9 +69,12 @@ def make_text(chains):
         # Add bi_gram and third word to stored text
         text = text + " " + third_word
 
-    print text
+    return text
 
 # Replace with name of your file
-all_text = open_and_read_file("gettysburg.txt")
+all_text = open_and_read_file("green-eggs.txt")
 markov_chains = make_chains(all_text)
-make_text(markov_chains)
+twitter_post = make_text(markov_chains)
+
+status = api.PostUpdate(twitter_post)
+print(status.text)
