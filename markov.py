@@ -69,7 +69,10 @@ def make_text(chains):
         # Add bi_gram and third word to stored text
         text = text + " " + third_word
 
-    return text
+    if len(text) >= 140:
+        text = text[:140]
+
+        return text
 
 # Replace with name of your file
 all_text = open_and_read_file("green-eggs.txt")
